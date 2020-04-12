@@ -25,5 +25,10 @@ RUN chmod +x /usr/src/app/entrypoint.sh
 # copy project
 COPY . /usr/src/app/
 
+RUN addgroup -S app && adduser -S app -G app
+
 # run entrypoint.sh
+RUN mkdir -p /usr/src/app/static
+RUN chown -R app:app /usr/src/app/
+USER app
 ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
