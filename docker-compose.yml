@@ -7,6 +7,7 @@ services:
     volumes:
       - ./:/usr/src/app/
       - static:/usr/src/app/static
+      - media:/usr/src/app/media
     expose:
       - 8000
     env_file:
@@ -25,6 +26,7 @@ services:
     build: ./nginx
     volumes:
       - static:/usr/src/app/static
+      - media:/usr/src/app/media
     ports:
       - 1337:80
     depends_on:
@@ -33,3 +35,4 @@ services:
 volumes:
   postgres_data:
   static:
+  media:

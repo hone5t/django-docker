@@ -29,6 +29,7 @@ RUN addgroup -S app && adduser -S app -G app
 
 # run entrypoint.sh
 RUN mkdir -p /usr/src/app/static
+RUN mkdir -p /usr/src/app/media
 RUN chown -R app:app /usr/src/app/
 USER app
 ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
