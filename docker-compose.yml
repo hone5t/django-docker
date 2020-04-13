@@ -1,6 +1,11 @@
 version: '3.7'
 
 services:
+  redis:
+    image: redis
+    container_name: cache
+    expose:
+      - 6379
   web:
     build: .
     command: gunicorn core.asgi:application -w 4 -k uvicorn.workers.UvicornWorker --reload --bind 0.0.0.0:8000
@@ -12,6 +17,10 @@ services:
       - 8000
     env_file:
       - ./.env.dev
+    links:
+      - redis
+    environment: 
+      - REDIS_URL=redis://cache
     depends_on:
       - db
   db:

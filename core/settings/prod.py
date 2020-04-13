@@ -19,3 +19,9 @@ DATABASES = {
         'PORT': os.environ.get('SQL_PORT', '5432'),
     }
 }
+CACHES = {
+    'default': {
+        'BACKEND': os.environ.get('CACHE'),
+        'LOCATION': os.environ.get('REDIS_SERVER'),
+    },
+}
